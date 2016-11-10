@@ -9,15 +9,16 @@
   "author": "phil olson",
   "license": "ISC",
   "dependencies": {
-    "es6-promise-pool": "^2.4.4",
+    "bluebird": "^3.4.6",
     "promise-concurrency-pool": "github:olsonpm/promise-concurrency-pool#aeb841df3f1542a85d1482c89b31e5d1eec75b37",
-    "rimraf": "^2.5.4"
+    "ramda": "^0.22.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "dir-compare": "^1.2.0",
     "mocha": "^3.1.2",
+    "rimraf": "^2.5.4",
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0"
   }

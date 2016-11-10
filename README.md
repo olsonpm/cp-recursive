@@ -1,10 +1,25 @@
 # cp-recursive
+Yet another `cp -r` function
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+- [Why I built this module](#why-i-built-this-module)
+- [Examples](#examples)
+  - [Example 1](#example-1)
+  - [Example 2](#example-2)
+  - [Example 3](#example-3)
+- [API](#api)
+- [Test](#test)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 ## Why I built this module
 I was sick of the various `cp -r` modules not behaving as `cp -r` in linux does.  Specifically, the modules I tried would not copy src into dest if
 dest was an existing directory.  There are probably other caveats I may adress in the future.
 
-## Why you probably shouldn't use this lib
+### Why you probably shouldn't use this lib
 There are plenty of `cp -r` node modules out there which are battle-tested.
 Mine is intended for personal use.
 
