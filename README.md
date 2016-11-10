@@ -115,6 +115,7 @@ opts
 
 promise
  - resolves when done
+ * a bluebird promise
  * do not expect errors to be handled nicely.  I have not addressed error
    handling due to haste
 ```

@@ -23,8 +23,6 @@ const bCopyFile = bPromise.promisify(copyFile)
   , { invoke } = rUtils
   ;
 
-let concurrencyPool;
-
 
 //------//
 // Main //
@@ -33,16 +31,16 @@ let concurrencyPool;
 const exportMe = r.curryN(
   2
   , (srcPath, destPath, opts) => {
-    const res = new Promise(onSettled => {
-      opts = r.merge({ concurrencyLimit: 5 }, opts);
-      concurrencyPool = pcp.create({ size: opts.concurrencyLimit, onSettled });
+    opts = r.merge({ concurrencyLimit: 5 }, opts);
 
+    const res = new bPromise(onSettled => {
+      const concurrencyPool = pcp.create({ size: opts.concurrencyLimit, onSettled });
       bFs.statAsync(destPath)
         .catch({ code: 'ENOENT' }, r.always(undefined))
         .then(destStats => {
           if (invoke('isDirectory', destStats)) destPath = path.join(destPath, path.basename(srcPath));
 
-          bRecursivelyCopy(srcPath, destPath);
+          bRecursivelyCopy(srcPath, destPath, concurrencyPool);
         })
         ;
     });
@@ -57,7 +55,7 @@ const exportMe = r.curryN(
 // Helper Fxns //
 //-------------//
 
-function bRecursivelyCopy(srcPath, destPath) {
+function bRecursivelyCopy(srcPath, destPath, concurrencyPool) {
   const getDestPath = src => path.join(destPath, path.basename(src));
 
   concurrencyPool.add(
@@ -71,7 +69,7 @@ function bRecursivelyCopy(srcPath, destPath) {
         .catch({ code: 'EEXIST' }, r.always(undefined))
         .then(() => bFs.readdirAsync(srcPath))
         .map(
-          aSrcDirFile => bRecursivelyCopy(path.join(srcPath, aSrcDirFile), getDestPath(aSrcDirFile))
+          aSrcDirFile => bRecursivelyCopy(path.join(srcPath, aSrcDirFile), getDestPath(aSrcDirFile), concurrencyPool)
         )
       : () => bCopyFile(srcPath, destPath)
       ;

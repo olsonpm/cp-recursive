@@ -4,7 +4,7 @@
   "description": "Another recursive copy lib",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/mocha/bin/mocha --no-deprecation test"
+    "test": "node_modules/mocha/bin/mocha --no-deprecation --timeout 500 test"
   },
   "author": "phil olson",
   "license": "ISC",
