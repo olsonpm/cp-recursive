@@ -16,7 +16,7 @@ const cpRecursive = require('cp-recursive')
 ```
 
 
-#### Example 1
+### Example 1
  - Basic use  
 
 Assume the following directory
@@ -41,7 +41,7 @@ parent2
   /child.txt
 ```
 
-#### Example 2
+### Example 2
  - Copies src into dest if dest is a directory  
 
 Assume the following directory
@@ -68,7 +68,7 @@ grandparent
     /child.txt
 ```
 
-#### Example 3
+### Example 3
  - Limit concurrency  
 
 ```js
