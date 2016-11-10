@@ -3,7 +3,7 @@ Yet another `cp -r` function
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
+## Table of Contents
 - [Why I built this module](#why-i-built-this-module)
 - [Examples](#examples)
   - [Example 1](#example-1)
