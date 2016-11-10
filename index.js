@@ -40,17 +40,10 @@ const exportMe = r.curryN(
       bFs.statAsync(destPath)
         .catch({ code: 'ENOENT' }, r.always(undefined))
         .then(destStats => {
-          const destIsDir = invoke('isDirectory', destStats);
+          if (invoke('isDirectory', destStats)) destPath = path.join(destPath, path.basename(srcPath));
 
-          if (destIsDir) {
-            destPath = path.join(destPath, path.basename(srcPath));
-          }
-
-          return (destIsDir)
-            ? bFs.mkdirAsync(destPath)
-            : undefined;
+          bRecursivelyCopy(srcPath, destPath);
         })
-        .then(() => bRecursivelyCopy(srcPath, destPath))
         ;
     });
 
